@@ -1,19 +1,22 @@
 import numpy as np
+from bisection import bisection
 import time
 
 error = 1e-10
 
-def f(x,r):
-    return x**3 - a
+def f(x,a):
+    return x**2 - a
 def df(x):
-    return 3*x**2
+    return 2*x
 
 
-def bisection(a):
+def sqrt_bisection(a):
     """
-    returns the cube root of a, calculated by the bisection method
+    returns the square root of a, calculated by the bisection method
     """
-    r=3
+    def f(x):
+        return x**2 - a
+
     if a == 0:
         return 0
     elif a > 0:
@@ -21,28 +24,11 @@ def bisection(a):
     elif a < 0:
         interval = [a,0]
 
-    count = 0
-    while(True):
-        count += 1
-        left = f(interval[0],r)
-        right = f(interval[1],r)
+    return bisection(f,interval,error = error,show=True)
 
-        if left*right < 0:
-            mid = (interval[0]+interval[1])/2
-            y = f(mid,r)
-            if abs(y) < error:
-                print(f'iterations={count}')
-                return mid
-            elif y > 0:
-                interval[1] = mid
-            elif y < 0:
-                interval[0] = mid
-        else:
-            raise ValueError('Operation crashed')
-
-def newtonRaphson(a):
+def sqrt_newtonRaphson(a):
     """
-    returns the cube root of a, calculated by the Newton - Raphson method
+    returns the square root of a, calculated by the Newton - Raphson method
     """
     r = 3
     if a == 0:
@@ -58,20 +44,19 @@ def newtonRaphson(a):
     print(f'iterations={count}')
     return x
 
-
 a = 3
 
 print('Bisection Method:')
 start = time.time()
-x = bisection(a)
+x = sqrt_bisection(a)
 end = time.time()
 print(x)
-print(f'elapsed time:{end-start}s')
+print(f'elapsed time: {end-start}s')
 
 print()
 print('Newton - Raphson Method:')
 start = time.time()
-x = newtonRaphson(a)
+x = sqrt_newtonRaphson(a)
 end = time.time()
 print(x)
-print(f'elapsed time:{end-start}s')
+print(f'elapsed time: {end-start}s')

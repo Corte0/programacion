@@ -6,13 +6,11 @@ class Thruster:
         assert isinstance(Isp, (float,int))
         assert isinstance(tank, Tank)
 
-        self.G0 = 9,80665
-
         self.name = name
-        self.Isp = Isp
-        self.max_mass_flow = (max_thrust / G0 * Isp)
-        self.throttle = 0
-        self.mass_flow = self.max_mass_flow * self.throttle
+        self.escape_vel = 9.80665 * Isp
+        self.max_mass_flow = max_thrust / self.escape_vel
+        self.mass_flow = self.max_mass_flow
+        self.thrust = self.escape_vel * self.mass_flow
         self.tank = tank
 
     def set_throttle(self, value):

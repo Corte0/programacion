@@ -9,13 +9,16 @@ class Tank:
         self.mass = mass
         self._preassure = preassure
 
-    def extract(self, mass):
-        assert isinstance(mass,(float,int))
+    def extract(self, mass_flow, time):
+        assert isinstance(mass_flow,(float,int))
+        assert isinstance(time,(float,int))
+
+        mass = mass_flow * time
 
         if self.mass > mass:
             self.mass -= mass
             self._preassure = self.INIT_PREASSURE * (self.mass / self.INIT_MASS)
-            return self.INIT_MASS - self.mass
+            return mass
         else:
             return None
 

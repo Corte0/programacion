@@ -22,10 +22,12 @@ class Thruster:
         self.mass_flow = self.max_mass_flow * self.throttle
 
     def get_thrust(self):
-        pass
+        return self.thrust
 
     def fire(self,time):
-        pass
+        boost = self.thrust * time
+        self.tank.extract(self.mass_flow, time)
+        return boost
 
     def shutdown(self):
         self.throttle = 0

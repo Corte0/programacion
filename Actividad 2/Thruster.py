@@ -13,11 +13,11 @@ class Thruster:
         self.thrust = self.escape_vel * self.mass_flow
         self.tank = tank
 
-    def set_throttle(self, value):
-        assert value > 0 and value < 1
+    def set_throttle(self, throttle):
+        assert throttle > 0 and throttle < 1
 
-        self.throttle = throttle
-        self.mass_flow = self.max_mass_flow * self.throttle
+        self.mass_flow = self.max_mass_flow * throttle
+        self.thrust = self.escape_vel * self.mass_flow
 
     def get_thrust(self):
         return self.thrust

@@ -19,10 +19,10 @@ class Sensor:
         self.gain = gain
 
     def read(self):
-        if self.raw is None:
+        if self.__raw is None:
             return None
 
-        read = (self.raw + self.offset) * self.gain
+        read = (self.__raw + self.offset) * self.gain
 
         if read > self.range[0] and read > self.range[1]:
             return read

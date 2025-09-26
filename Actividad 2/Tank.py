@@ -22,14 +22,14 @@ class Tank:
         else:
             return None
 
-    def getMass(self):
+    def get_mass(self):
         return self.mass
 
-    def getInitMass(self):
+    def get_init_Mass(self):
         return self.INIT_MASS
 
-    def getPreassure(self):
+    def get_preassure(self):
         return self._preassure
 
-    def getInitPreassure(self):
+    def get_init_preassure(self):
         return self.INIT_PREASSURE

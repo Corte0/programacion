@@ -1,3 +1,5 @@
+from Tank import Tank
+
 class Thruster:
     def __init__(self, name, max_thrust, Isp, tank):
         assert isinstance(max_thrust, (float,int))

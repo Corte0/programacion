@@ -13,11 +13,11 @@ if __name__== '__main__':
     for i in range(len(a_arr)):
         a_dev_arr.append(a_arr[i] * (1+e))
 
-    maximos = list() # 
+    maximos = list()
     for a_dev in a_dev_arr:
-        q_maxs = list() 
-        t_maxs = list() 
-        for a in a_dev: # i es una aceleración
+        q_maxs = list()
+        t_maxs = list()
+        for a in a_dev:
             q_t = value(fix_variable(q_dinamica, a), t)
             index = q_t.argmax()
             t_maxs.append(t[index])
@@ -39,7 +39,7 @@ if __name__== '__main__':
     for i in range(len(maximos)):
         axes[i].set_xlabel('Presión dinámica [pa]')
         axes[i].set_ylabel('Repeticiones [veces]')
-        axes[i].hist(maximos[i][1], label=f'mean = {mean[i][1]:.3f}\nstdev = {stdev[i][1]:.3f}')
+        axes[i].hist(maximos[i][1], label=f'MaxQ = {mean[i][1]:.3} ± {stdev[i][1]:.3f}\nt_MaxQ = {mean[i][0]:.3} ± {stdev[i][0]:.3f}')
         axes[i].legend()
     plt.show()
 

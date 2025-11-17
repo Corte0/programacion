@@ -42,7 +42,6 @@ def insertion_sort_gen(L:list):
         val = S[i]
         while j > -1  and val < S[j]:
             S[j+1] = S[j]
-            yield S
             j -= 1
         S[j + 1] = val
         yield S
@@ -207,25 +206,51 @@ if __name__ == '__main__':
     L2 = [22,36,6,79,26,45,75,13]
     L3 = random.sample(range(0, 100), 50)
 
-    lista_plotear = L3
+    lista_plotear = L2
 
-    fig, ax = plt.subplots()
-    bars = ax.bar(range(len(lista_plotear)), lista_plotear)
+    print('bubble sort')
+    for i in bubble_sort_gen(L1):
+        print(i)
 
-    def update(frame):
-        for height, bar in zip(frame, bars.patches):
-            bar.set_height(height)
-        return bars.patches
+    print('selection sort')
+    for i in selection_sort_gen(L1):
+        print(i)
 
-    ani = animation.FuncAnimation(
-        fig,
-        update,
-        frames=selection_sort_gen(lista_plotear),
-        interval=1,
-        blit=True,
-        cache_frame_data=False,
-        repeat = False
-        )
+    print('insertion sort')
+    for i in insertion_sort_gen(L1):
+        print(i)
 
-    ani.save("gif/selection.gif", writer="pillow", fps=30)
+    print('merge sort')
+    for i in merge_sort_gen(L2):
+        print(i)
+
+    print('quick sort')
+    for i in quick_sort_gen(L2):
+        print(i)
+
+    #fig, ax = plt.subplots()
+    #bars = ax.bar(range(len(lista_plotear)), lista_plotear)
+
+    #def init():
+    #    for bar, h in zip(bars.patches, lista_plotear):
+    #        bar.set_height(h)
+    #    return bars.patches
+
+    #def update(frame):
+    #    for height, bar in zip(frame, bars.patches):
+    #        bar.set_height(height)
+    #    return bars.patches
+
+    #ani = animation.FuncAnimation(
+    #    fig,
+    #    update,
+    #    frames=merge_sort_gen(lista_plotear),
+    #    init_func=init,
+    #    interval=1,
+    #    blit=True,
+    #    cache_frame_data=False,
+    #    repeat=False
+    #)
+
+    #ani.save("mp4/L2/merge.mp4", writer="ffmpeg", fps=3)
 
